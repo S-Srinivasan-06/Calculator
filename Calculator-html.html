@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CALCULATOR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="Calculator">
+            <input type="text" placeholder="0" id="outputscreen">
+            <button onclick="Clear()" class="abc">C</button>
+            <button onclick="del()" class="abc">DEL</button>
+            <button onclick="display('%')" class="perc">%</button>
+            <button onclick="display('/')" class="ops">&divide;</button>
+            <button onclick="display('7')">7</button>
+            <button onclick="display('8')">8</button>
+            <button onclick="display('9')">9</button>
+            <button onclick="display('*')" class="ops">&times;</button>
+            <button onclick="display('4')">4</button>
+            <button onclick="display('5')">5</button>
+            <button onclick="display('6')">6</button>
+            <button onclick="display('-')" class="ops">&minus;</button>
+            <button onclick="display('1')">1</button>
+            <button onclick="display('2')">2</button>
+            <button onclick="display('3')">3</button>
+            <button onclick="display('+')" class="ops">&plus;</button>
+            <button onclick="display('.')" class="dot">.</button>
+            <button onclick="display('0')">0</button>
+            <button onclick="Calculate()" class="equal">&equals;</button>
+        </div>
+    </div>
+
+    <script>
+        let outputscreen = document.getElementById("outputscreen");
+
+        function display(num) {
+            const operators = ['+', '-', '*', '/'];
+            const lastChar = outputscreen.value.slice(-1);
+
+            // Prevent multiple consecutive operators
+            if (operators.includes(num) && operators.includes(lastChar)) {
+                return; // Do nothing if the last character is already an operator
+            }
+
+            outputscreen.value += num;
+        }
+
+        function Calculate() {
+            try {
+                outputscreen.value = eval(outputscreen.value);
+            } catch (err) {
+                alert("Invalid");
+            }
+        }
+
+        function Clear() {
+            outputscreen.value = "";
+        }
+
+        function del() {
+            outputscreen.value = outputscreen.value.slice(0, -1);
+        }
+    </script>
+</body>
+
+</html>
